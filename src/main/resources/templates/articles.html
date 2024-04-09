@@ -2,18 +2,34 @@
 <html  lang="fr" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>Insert title here</title>
+    <title>Mes articles</title>
+    <link rel="stylesheet" href="../static/bootstrap.min.css" th:href="@{css/bootstrap.min.css}">
 </head>
 <body>
-    <table>
-        <tr>
-            <th>Id</th> <th>Description</th> <th>Prix</th>
-        </tr>
-        <tr th:each="a:${listArticle}">
-            <td th:text="${a.id}"></td>
-            <td th:text="${a.description}"></td>
-            <td th:text="${a.price}"></td>
-        </tr>
-    </table>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Liste des articles</div>
+            <div class="panel-body">
+                <table class="table">
+                    <tr>
+                        <th>Id</th> <th>Description</th> <th>Prix</th>
+                    </tr>
+                    <tr th:each="a:${listArticle}">
+                        <td th:text="${a.id}"></td>
+                        <td th:text="${a.description}"></td>
+                        <td th:text="${a.price}"></td>
+                    </tr>
+                </table>
+                <ul class="nav nav-pills">
+                    <li th:class="${currentPage==status.index}?'active':''" th:each="page, status:${pages}">
+                        <a th:href="@{/index(page=${status.index})}" th:text="${status.index}"></a>
+                    </li>
+                </ul>
+            </div>
+
+
+    </div>
+</div>
+
 </body>
 </html>
