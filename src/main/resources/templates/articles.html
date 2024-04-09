@@ -24,6 +24,10 @@
                         <td th:text="${a.id}"></td>
                         <td th:text="${a.description}"></td>
                         <td th:text="${a.price}"></td>
+                        <td>
+                            <a th:href="@{/delete(id=${a.id}, page=${currentPage}, keyword=${keyword})}">Delete</a>
+
+                        </td>
                     </tr>
                 </table>
                 <ul class="nav nav-pills">
