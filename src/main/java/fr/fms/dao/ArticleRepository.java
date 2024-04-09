@@ -11,5 +11,5 @@ import fr.fms.entities.*;
 
 public interface ArticleRepository extends JpaRepository<Article, Long>{
 
-
+Page<Article> findByDescriptionContains(String description, Pageable pageable);
 }

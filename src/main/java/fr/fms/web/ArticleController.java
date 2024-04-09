@@ -19,14 +19,17 @@ public class ArticleController {
 
     // @RequestMapping(value="/index", method=RequestMethod.GET)
     @GetMapping("/index")
-    public String index(Model model, @RequestParam(name="page", defaultValue = "0")int page){ //le model est fourni par spring, je peux l'utiliser comme ci
+    public String index(Model model, @RequestParam(name="page", defaultValue = "0")int page, @RequestParam(name="keyword", defaultValue = "")String kw){ //le model est fourni par spring, je peux l'utiliser comme ci
         //List<Article> articles = articleRepository.findAll(); //Récup tous les articles
-        Page<Article> articles = articleRepository.findAll(PageRequest.of(page,5));
+//        Page<Article> articles = articleRepository.findAll(PageRequest.of(page,5));
+        Page<Article> articles = articleRepository.findByDescriptionContains(kw, PageRequest.of(page,5));
         model.addAttribute("listArticle", articles.getContent());
 
         model.addAttribute("pages", new int[articles.getTotalPages()]);
 
         model.addAttribute("currentPage", page);
+
+        model.addAttribute("keyword",kw);
 
         // return articles.html
         return "articles"; //cette méthode retourne au dispatcherServerlet une vue
