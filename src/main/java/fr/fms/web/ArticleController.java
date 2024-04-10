@@ -53,6 +53,14 @@ public class ArticleController {
         return "article";
     }
 
+    @GetMapping("/update")
+    public String update(Model model) {
+        // on inject un article par defaut dans le formulaire de saisi
+        Article article = new Article();
+        model.addAttribute("article", article);
+        return "update";
+    }
+
     @PostMapping("/save")
     public String save(Model model, @Valid Article article, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) return "article";
