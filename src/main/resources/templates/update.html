@@ -13,7 +13,7 @@
         <div class="panel panel-primary">
             <div class="panel-heading">Modifier article</div>
             <div class="panel-body">
-                <form method="post" th:action="@{/save}">
+                <form method="post" th:action="@{/toUpdate(id=${article.id})}">
                     <div class="form-group">
                         <label class="control-label"> Description : </label>
                         <input class="form-control" name="description" th:value="${article.description}" type="text">
@@ -24,7 +24,7 @@
                         <input class="form-control" name="price" th:value="${article.price}" type="text">
                         <span class="text-danger" th:errors="${article.price}"></span>
                     </div>
-                    <button class="btn btn-primary" type="submit">Save</button>
+                    <button class="btn btn-primary" type="submit">Update</button>
                 </form>
             </div>
         </div>
